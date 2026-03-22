@@ -2,14 +2,14 @@
 title: ACID properties in DBMS
 ---
 
-# Date: May 19, 2024
+#### Date: May 19, 2024
 
 ---
 NoSQL databases are non-relational database systems that store and manage data using flexible schemas and alternative data models (key-value, document, column-family, graph, etc.) designed for horizontal scalability and high availability, especially for large-scale and distributed applications.” 
 
 NoSQL database : non-relational database that stores the data in non tabular format, rather than in rule-based. It is build for scaling and distribution.
 
-# Characteristics of NoSQL database and SQL database
+#### Characteristics of NoSQL database and SQL database
 
 | **Aspect**  | **SQL**  | **NoSQL**  |
 | --- | --- | --- |
@@ -18,7 +18,7 @@ NoSQL database : non-relational database that stores the data in non tabular for
 | Consistency  | ACID - always perfectly consistence  | BASE - eventually consistent |
 | Best for  | Banking, inventory, structured data  | Social media, IoT, big data, AI |
 
-# ACID properties in DBMS
+#### ACID properties in DBMS
 
 Relational databases live and die by **ACID** properties to ensure absolute accuracy. However, distributed web systems often require a more fluid philosophy known as **BASE**.
 
@@ -29,7 +29,7 @@ Relational databases live and die by **ACID** properties to ensure absolute accu
 
 - Analogy :  surgeon in an operating room. Every step is logged. If something goes wrong, they rollback. The operation is either fully complete or doesn’t.
 
-# The Breakdown of BASE
+#### The Breakdown of BASE
 
 - B ( Basically Available ) - [ always responds ] the system guarantees availability that respond to request ( read/ write ). but the responds might not reflect the most recent data
 - S ( Soft state ) - ( data is in flux ) the state of the system may change over time , even without the new input because of eventual consistency meaning nodes in the distributed system may be in the process of syncing and the state in not fixed in any given moment.
@@ -38,7 +38,7 @@ Relational databases live and die by **ACID** properties to ensure absolute accu
 
 You post a photo on Instagram. Your friend in Tokyo immediately tries to like it but they see an old version for 200 milliseconds. Then **both servers sync up** and everything is consistent. You never noticed. The ocean settled. This is BASE in action — and it's fine for social media. Would you want this for your bank account? Absolutely not. That's why banks use ACID.
 
-# CAP theorem ( pick any two) 
+#### CAP theorem ( pick any two) 
 
 ![alt text](/assets/cap.png)
 
@@ -54,7 +54,7 @@ In practice, **Partition Tolerance (P) is non-negotiable.** Networks will fail. 
 To solve this "brutal" trade-off, modern NoSQL systems offer **tunable consistency**.
 This allows developers to decide, on a per-operation basis, whether a  specific request needs the speed of availability or the precision of consistency.
 
-# Types of NoSQL Databases
+#### Types of NoSQL Databases
 
 - **Key-Value Stores** - Stores data as **key → value** pairs. Values are opaque blobs. Fastest possible lookups but zero rich querying.
 - **Document Store -** Stores nested **JSON/BSON documents** in collections. Rich field-level queries. Flexible schema per document.
