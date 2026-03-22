@@ -138,7 +138,7 @@ export default function Home() {
 
       <footer className="border-t border-slate-200 bg-white py-6">
         <div className="mx-auto flex w-full max-w-6xl justify-center px-4 text-sm text-slate-500 sm:px-6 lg:px-8">
-          <span className="text-center">© {new Date().getFullYear()} DBS Blog. All rights reserved.</span>
+          <span className="text-center">© {new Date().getFullYear()} Tashi Penjor. All rights reserved.</span>
         </div>
       </footer>
     </div>
