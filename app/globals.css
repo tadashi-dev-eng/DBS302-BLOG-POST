@@ -75,6 +75,18 @@ body {
   box-shadow: 0 0 0 1px rgba(148, 163, 184, 0.25);
 }
 
+.notion-markdown table {
+  display: block;
+  overflow-x: auto;
+  max-width: 100%;
+  -webkit-overflow-scrolling: touch;
+}
+
+.notion-markdown table td,
+.notion-markdown table th {
+  white-space: nowrap;
+}
+
 .notion-markdown thead th,
 .notion-markdown tbody td {
   border: 1px solid #cbd5e1;
