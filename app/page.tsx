@@ -71,9 +71,10 @@ export default function Home() {
             </div>
             <div className="rounded-xl bg-linear-to-br from-indigo-500 via-violet-500 to-fuchsia-500 p-1 shadow-lg">
               <div className="h-64 rounded-lg bg-white p-6 sm:h-72 md:h-80">
-                <p className="text-lg font-semibold text-slate-900">Latest Post</p>
-                <h2 className="mt-2 text-2xl font-bold text-slate-800">Build Responsive Blog Layouts with Next.js and Tailwind</h2>
-                <p className="mt-3 text-sm text-slate-600">A beginner-friendly tutorial with code samples and best practices for 2026.</p>
+                <p className="text-xl font-semibold text-slate-900">Latest Post</p>
+                {/* <h2 className="mt-2 text-2xl font-bold text-slate-800">Build Responsive Blog Layouts with Next.js and Tailwind</h2>
+                <p className="mt-3 text-sm text-slate-600">A beginner-friendly tutorial with code samples and best practices for 2026.</p> */}
+                <p className="mt-3 text-xl font-bold text-slate-600">This website is a DBS learning blog focused on Database Management System concepts, practical examples, and hands on exercises to help master DBMS.</p>
                 <div className="mt-4 flex flex-wrap items-center gap-2">
                   <a
                     href="https://github.com/tadashi-dev-eng"
