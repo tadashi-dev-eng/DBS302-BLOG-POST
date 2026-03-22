@@ -1,5 +1,5 @@
 ---
-title: ACID properties in DBMS
+title: Introduction to NoSQL Databases
 ---
 
 #### Date: May 19, 2024
@@ -36,7 +36,7 @@ Relational databases live and die by **ACID** properties to ensure absolute accu
 - E ( Eventually consistent ) - [ will sync up ] the system doesn’t guarantee that all the nodes reflect the same data at the same time, but given enough time it will sync up.
 - Analogy : Real-World Example of "Eventual Consistency"
 
-You post a photo on Instagram. Your friend in Tokyo immediately tries to like it but they see an old version for 200 milliseconds. Then **both servers sync up** and everything is consistent. You never noticed. The ocean settled. This is BASE in action — and it's fine for social media. Would you want this for your bank account? Absolutely not. That's why banks use ACID.
+**Analogy**: You post a photo on Instagram. Your friend in Tokyo immediately tries to like it but they see an old version for 200 milliseconds. Then **both servers sync up** and everything is consistent. You never noticed. The ocean settled. This is BASE in action — and it's fine for social media. Would you want this for your bank account? Absolutely not. That's why banks use ACID.
 
 #### CAP theorem ( pick any two) 
 
