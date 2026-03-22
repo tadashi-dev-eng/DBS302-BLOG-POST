@@ -34,12 +34,21 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   const { data, content } = matter(fileContent);
 
   return (
-    <main className="min-h-screen bg-white text-slate-900 p-8">
-      <div className="mx-auto max-w-3xl">
-        <h1 className="text-3xl font-bold mb-4">{data.title ?? slug}</h1>
-        <article className="prose prose-slate">
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
-        </article>
+    <main className="min-h-screen bg-[#f5f7fb] text-slate-900 p-6 md:p-10">
+      <div className="mx-auto max-w-4xl bg-white border border-slate-200 shadow-lg rounded-2xl overflow-hidden">
+        <div className="px-6 py-8 md:px-10 md:py-10 space-y-6">
+          <header>
+            <p className="text-xs font-medium uppercase tracking-widest text-slate-500 mb-1">Article</p>
+            <h1 className="text-4xl md:text-5xl font-extrabold leading-tight text-slate-900">
+              {data.title ?? slug}
+            </h1>
+            {data.date && <p className="text-sm text-slate-500 mt-2">{data.date}</p>}
+          </header>
+
+          <article className="notion-markdown">
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
+          </article>
+        </div>
       </div>
     </main>
   );
