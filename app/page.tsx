@@ -43,43 +43,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col bg-linear-to-b from-slate-100 via-white to-slate-50 text-slate-900">
-      <header className="sticky top-0 z-30 bg-white/95 backdrop-blur border-b border-slate-200">
-        <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-          <a href="#" className="text-xl font-extrabold tracking-tight text-slate-900">
-            DBS Blog
-          </a>
-
-          <nav className="hidden items-center gap-6 text-sm font-medium md:flex">
-            <Link href="/" className="text-slate-700 hover:text-slate-900">Home</Link>
-            <Link href="/articles" className="text-slate-700 hover:text-slate-900">Articles</Link>
-          </nav>
-
-          {isSignedIn ? (
-            <button
-              type="button"
-              onClick={async () => {
-                await supabase.auth.signOut();
-                setSession(null);
-              }}
-              className="hidden rounded-md bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-500 md:inline-flex"
-            >
-              Logout
-            </button>
-          ) : null}
-
-          <details className="md:hidden">
-            <summary className="cursor-pointer rounded-md border border-slate-300 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100">
-              Menu
-            </summary>
-            <div className="mt-2 flex flex-col gap-2 rounded-md border border-slate-200 bg-white p-3 shadow-sm">
-              <Link href="/" className="block rounded-md px-2 py-2 text-sm text-slate-700 hover:bg-slate-100">Home</Link>
-              <Link href="/articles" className="block rounded-md px-2 py-2 text-sm text-slate-700 hover:bg-slate-100">Articles</Link>
-
-            </div>
-          </details>
-        </div>
-      </header>
-
       <main className="flex-1 mx-auto flex w-full max-w-6xl flex-col gap-10 px-4 py-12 sm:px-6 lg:px-8">
         {!isSignedIn ? (
           <section className="grid gap-8 md:grid-cols-2 md:items-center">
@@ -89,7 +52,7 @@ export default function Home() {
                 Modern tech stories and tutorials for every developer.
               </h1>
               <p className="mt-4 max-w-xl text-base text-slate-600 sm:text-lg">
-                Get weekly insights, practical guides, and real-world examples built for responsive design across mobile, tablet, and desktop.
+                Get weekly insights, practical guides, and real-world examples built for Database Management System enthusiasts. Sign up to unlock all content and stay updated with the latest posts.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link
@@ -111,6 +74,24 @@ export default function Home() {
                 <p className="text-lg font-semibold text-slate-900">Latest Post</p>
                 <h2 className="mt-2 text-2xl font-bold text-slate-800">Build Responsive Blog Layouts with Next.js and Tailwind</h2>
                 <p className="mt-3 text-sm text-slate-600">A beginner-friendly tutorial with code samples and best practices for 2026.</p>
+                <div className="mt-4 flex flex-wrap items-center gap-2">
+                  <a
+                    href="https://github.com/tadashi-dev-eng"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="rounded-md bg-slate-900 px-3 py-1.5 text-sm font-semibold text-white hover:bg-slate-800"
+                  >
+                    GitHub Profile
+                  </a>
+                  {/* <a
+                    href="https://www.linkedin.com/in/<your-linkedin-id>"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="rounded-md bg-blue-600 px-3 py-1.5 text-sm font-semibold text-white hover:bg-blue-500"
+                  >
+                    LinkedIn Profile
+                  </a> */}
+                </div>
               </div>
             </div>
           </section>
@@ -129,7 +110,7 @@ export default function Home() {
               <div className="h-64 rounded-lg bg-white p-6 sm:h-72 md:h-80">
                 <p className="text-lg font-semibold text-slate-900">Ready to learn?</p>
                 <h2 className="mt-2 text-2xl font-bold text-slate-800">Explore units directly</h2>
-                <p className="mt-3 text-sm text-slate-600">No sign up/sign in buttons here; you are already authenticated.</p>
+                <p className="mt-3 text-sm text-slate-600">No sign up/sign in buttons here, you are already authenticated.</p>
               </div>
             </div>
           </section>
