@@ -8,26 +8,40 @@ export default function ArticlesPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-linear-to-b from-slate-100 via-white to-slate-50 text-slate-900">
-      <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
-        <h1 className="text-3xl font-bold text-slate-900">Articles</h1>
-        <p className="mt-2 text-slate-600">Choose a unit to read or go back to home.</p>
+    <div className="min-h-screen bg-slate-50 text-slate-900">
+      <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:px-8">
+        <header className="mb-10">
+          <p className="text-sm uppercase tracking-[0.28em] text-slate-500">Articles</p>
+          <h1 className="mt-3 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
+            Unit articles
+          </h1>
+          <p className="mt-4 max-w-2xl text-base leading-7 text-slate-600">
+            Browse your locally authored markdown lessons and read them in a normal website layout.
+          </p>
+        </header>
 
-        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="space-y-5">
           {units.map((unit) => (
-            <article key={unit.slug} className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
-              <h2 className="text-lg font-semibold text-slate-800">{unit.title}</h2>
-              <Link
-                href={`/articles/${unit.slug}`}
-                className="mt-3 inline-block rounded-md bg-sky-600 px-4 py-2 text-sm font-semibold text-white hover:bg-sky-500"
-              >
-                Open unit
-              </Link>
+            <article key={unit.slug} className="rounded-3xl bg-white p-6 shadow-sm transition hover:shadow-md">
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <h2 className="text-xl font-semibold text-slate-900">{unit.title}</h2>
+                  <p className="mt-2 max-w-xl text-sm leading-6 text-slate-600">
+                    Open the unit to read the lesson rendered like a normal website article.
+                  </p>
+                </div>
+                <Link
+                  href={`/articles/${unit.slug}`}
+                  className="inline-flex items-center justify-center rounded-2xl bg-sky-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-sky-500"
+                >
+                  Open unit
+                </Link>
+              </div>
             </article>
           ))}
         </div>
 
-        <div className="mt-8">
+        <div className="mt-12">
           <Link href="/" className="text-sm font-medium text-sky-600 hover:text-sky-500">
             ← Back to Home
           </Link>

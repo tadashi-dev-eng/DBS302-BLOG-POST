@@ -4,6 +4,8 @@ import Link from "next/link";
 import matter from "gray-matter";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import rehypeHighlight from "rehype-highlight";
+import rehypeSlug from "rehype-slug";
 import { notFound } from "next/navigation";
 
 const contentDir = path.join(process.cwd(), "content", "articles");
@@ -35,29 +37,27 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   const { data, content } = matter(fileContent);
 
   return (
-    <main className="min-h-screen bg-[#f5f7fb] text-slate-900 p-6 md:p-10">
-      <div className="mx-auto max-w-4xl bg-white border border-slate-200 shadow-lg rounded-2xl overflow-hidden">
-        <div className="px-6 py-8 md:px-10 md:py-10 space-y-6">
-          <header>
-            <div className="mb-4">
-              <Link
-                href="/"
-                className="inline-flex items-center rounded-md border border-slate-200 bg-white px-3 py-1 text-sm font-medium text-slate-700 shadow-sm transition hover:bg-slate-50"
-              >
-                ← Back to Home
-              </Link>
-            </div>
-            <p className="text-xs font-medium uppercase tracking-widest text-slate-500 mb-1">Article</p>
-            <h1 className="text-4xl md:text-5xl font-extrabold leading-tight text-slate-900">
-              {data.title ?? slug}
-            </h1>
-            {data.date && <p className="text-sm text-slate-500 mt-2">{data.date}</p>}
-          </header>
-
-          <article className="notion-markdown">
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
-          </article>
+    <main className="min-h-screen bg-slate-50 text-slate-900">
+      <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
+        <div className="mb-10">
+          <p className="text-sm uppercase tracking-[0.28em] text-slate-500">Unit article</p>
+          <h1 className="mt-3 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
+            {data.title ?? slug}
+          </h1>
+          {data.date && <p className="mt-3 text-sm text-slate-500">Published {data.date}</p>}
+          <div className="mt-6">
+            <Link
+              href="/articles"
+              className="text-sm font-medium text-sky-600 hover:text-sky-500"
+            >
+              ← Back to units
+            </Link>
+          </div>
         </div>
+
+        <article className="notion-markdown space-y-8">
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
+        </article>
       </div>
     </main>
   );

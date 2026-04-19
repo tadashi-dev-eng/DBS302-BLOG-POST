@@ -10,7 +10,7 @@ RESP : Redis Serialization Protocal that is text based used by redis client to c
 
 1. In-memory storage (RAM) : Redis stroes the data in RAM that makes the fetching time nanosecond
 
-2. Non-blocking I/O (Multiplexing): Redis works on single threats meaning it uses Reactor pattern. However it never stays idel waiting for client to response despite being single thread. It uses the system call like epoll and kqueue to handle thousands of connection simultanously.
+2. Non-blocking I/O (Multiplexing): Redis works on single threats meaning it uses Reactor pattern. However it never stays idel waiting for client to response despite being single thread. It uses the system call like epoll(linux) and kqueue(MAC) to handle thousands of connection simultanously.
  
 3. Single-threaded execution (Atomic) : No context switching, no mutex locking, no race conditions. One command at a time CPU cache stays warm.
 
@@ -25,4 +25,6 @@ RESP — Redis Serialization Protocol
 
 Binary-safe, text-based protocol used by all Redis clients (Java, Python, Node.js, Go) to communicate with the server. The Reactor Pattern handles connections; RESP is the language spoken over them.
 ```
+
+
 

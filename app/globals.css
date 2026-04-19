@@ -27,8 +27,10 @@ body {
 
 .notion-markdown {
   color: #0f172a;
-  font-size: 1.03rem;
-  line-height: 1.75;
+  font-size: 1.05rem;
+  line-height: 1.85;
+  max-width: 70ch;
+  margin: 0 auto;
 }
 
 .notion-markdown h1,
@@ -124,6 +126,52 @@ body {
   padding: 0.15rem 0.4rem;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   font-size: 0.95rem;
+}
+
+.notion-markdown .hljs {
+  background: #0f172a;
+  color: #f8fafc;
+}
+
+.notion-markdown .hljs-comment,
+.notion-markdown .hljs-quote {
+  color: #94a3b8;
+}
+
+.notion-markdown .hljs-keyword,
+.notion-markdown .hljs-selector-tag,
+.notion-markdown .hljs-subst {
+  color: #38bdf8;
+}
+
+.notion-markdown .hljs-string,
+.notion-markdown .hljs-title,
+.notion-markdown .hljs-name,
+.notion-markdown .hljs-section,
+.notion-markdown .hljs-selector-id,
+.notion-markdown .hljs-type {
+  color: #a5f3fc;
+}
+
+.notion-markdown .hljs-built_in,
+.notion-markdown .hljs-bullet,
+.notion-markdown .hljs-code,
+.notion-markdown .hljs-emphasis,
+.notion-markdown .hljs-literal,
+.notion-markdown .hljs-number,
+.notion-markdown .hljs-operator,
+.notion-markdown .hljs-tag,
+.notion-markdown .hljs-template-tag,
+.notion-markdown .hljs-variable {
+  color: #fef08a;
+}
+
+.notion-markdown .hljs-addition {
+  background-color: rgba(52, 211, 153, 0.18);
+}
+
+.notion-markdown .hljs-deletion {
+  background-color: rgba(248, 113, 113, 0.18);
 }
 
 .notion-markdown img {

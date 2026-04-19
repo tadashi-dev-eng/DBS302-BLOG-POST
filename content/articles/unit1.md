@@ -56,10 +56,10 @@ CAP theorem states that in a distrubuted data store can only provide two of the 
 
 Trade offs on when using Partition occurs:
 
-1. CP ( Consistency + Partition tolerence)
+CP ( Consistency + Partition tolerence)
 Sacrifies availability to ensure data consistency. If partition happens the system returns an error prefering to be safe rather than inconsistence.
 
-2. AP ( Availability + Partition tolerance)
+AP ( Availability + Partition tolerance)
 Sacrifies consistency to remain available. Nodes may return stale or different data but the system stays operational offten using the eventual consistency to fix data later.
 
 
