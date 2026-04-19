@@ -25,7 +25,10 @@ Relational databases live and die by **ACID** properties to ensure absolute accu
 1. A ( Atomicity ) - [All or nothing] treats a transaction as a single unit. If any part of the transaction fails, the entire transaction fails and the database in unchanged ( rollback )
 2. C ( Consistency ) - [ rule always hold ] the data must go from one valid state to another state. It always maintain all predefined rules , constrains and cascades. 
 3. I ( Isolation ) - [ ops don’t interfere ] ensure that concurrently executing transactions do not interfere with each other. Each transactions behaves as if it is the only one running. 
-4. D ( Durability ) - [committed / durability ] once the transaction is committed the data is saved permanently even surviving the system failure.
+4. D ( Durability ) - [committed / durability ] once the transaction is coIn practice, **Partition Tolerance (P) is non-negotiable.** Networks will fail. Therefore, architects must choose between **CP systems** (Consistency + Partition Tolerance), which block operations during a failure to ensure accuracy, and **AP systems** (Availability + Partition Tolerance), which stay online but serve "stale" data.
+
+To solve this "brutal" trade-off, modern NoSQL systems offer **tunable consistency**.
+This allows developers to decide, on a per-operation basis, whether a  specific request needs the speed of availability or the precision of consistency.mmitted the data is saved permanently even surviving the system failure.
 
 - Analogy :  surgeon in an operating room. Every step is logged. If something goes wrong, they rollback. The operation is either fully complete or doesn’t.
 
@@ -40,6 +43,8 @@ Relational databases live and die by **ACID** properties to ensure absolute accu
 
 #### CAP theorem ( pick any two) 
 
+CAP theorem states that in a distrubuted data store can only provide two of the three guarantees which include **Consistency**(all the nodes sees the same data), **Availability**(every request receives a response) and **Partition tolerance**(system operates despite network failure).
+
 ![alt text](/assets/cap.png)
 
 - C - **What you see is always up-to-date.**
@@ -49,10 +54,14 @@ Relational databases live and die by **ACID** properties to ensure absolute accu
 
 **CP** (sacrifice availability during outages) vs **AP** (sacrifice consistency, but always respond)
 
-In practice, **Partition Tolerance (P) is non-negotiable.** Networks will fail. Therefore, architects must choose between **CP systems** (Consistency + Partition Tolerance), which block operations during a failure to ensure accuracy, and **AP systems** (Availability + Partition Tolerance), which stay online but serve "stale" data.
+Trade offs on when using Partition occurs:
 
-To solve this "brutal" trade-off, modern NoSQL systems offer **tunable consistency**.
-This allows developers to decide, on a per-operation basis, whether a  specific request needs the speed of availability or the precision of consistency.
+1. CP ( Consistency + Partition tolerence)
+Sacrifies availability to ensure data consistency. If partition happens the system returns an error prefering to be safe rather than inconsistence.
+
+2. AP ( Availability + Partition tolerance)
+Sacrifies consistency to remain available. Nodes may return stale or different data but the system stays operational offten using the eventual consistency to fix data later.
+
 
 #### Types of NoSQL Databases
 
