@@ -5,9 +5,16 @@ import { useEffect, useState } from "react";
 import type { Session } from "@supabase/supabase-js";
 import { supabase } from "../lib/supabaseClient";
 
+type ArticleMeta = {
+  slug: string;
+  title: string;
+  date?: string;
+};
+
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [session, setSession] = useState<Session | null>(null);
+  const [articles, setArticles] = useState<ArticleMeta[]>([]);
 
   useEffect(() => {
     const checkSession = async () => {
@@ -33,7 +40,21 @@ export default function Home() {
       }
     };
 
+    const loadArticles = async () => {
+      try {
+        const response = await fetch("/api/articles");
+        if (!response.ok) {
+          throw new Error("Failed to load articles");
+        }
+        const data = (await response.json()) as ArticleMeta[];
+        setArticles(data);
+      } catch {
+        setArticles([]);
+      }
+    };
+
     checkSession();
+    loadArticles();
 
     const authListener = supabase?.auth.onAuthStateChange((_event, session) => {
       setSession(session);
@@ -133,22 +154,24 @@ export default function Home() {
         )}
 
         <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {[
-            { title: "Unit 1", desc: "Introduction to NoSQL Databases", slug: "unit1" },
-            { title: "Unit 2", desc: "Redis Architecture", slug: "unit2" },
-            { title: "Unit 3", desc: "Coming soon", slug: "unit3" },
-          ].map((item) => (
-            <article key={item.title} className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
-              <h3 className="text-lg font-semibold text-slate-800">{item.title}</h3>
-              <p className="mt-2 text-sm text-slate-600">{item.desc}</p>
-              <Link
-                href={isSignedIn ? `/articles/${item.slug}` : "/signin"}
-                className="mt-4 inline-block rounded-md bg-sky-600 px-4 py-2 text-sm font-semibold text-white hover:bg-sky-500"
-              >
-                {isSignedIn ? "Open unit" : "Login to open"}
-              </Link>
-            </article>
-          ))}
+          {articles.length > 0 ? (
+            articles.map((article) => (
+              <article key={article.slug} className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+                <h3 className="text-lg font-semibold text-slate-800">{article.title}</h3>
+                <p className="mt-2 text-sm text-slate-600">Read the article rendered from markdown content.</p>
+                <Link
+                  href={isSignedIn ? `/articles/${article.slug}` : "/signin"}
+                  className="mt-4 inline-block rounded-md bg-sky-600 px-4 py-2 text-sm font-semibold text-white hover:bg-sky-500"
+                >
+                  {isSignedIn ? "Open article" : "Login to open"}
+                </Link>
+              </article>
+            ))
+          ) : (
+            <div className="rounded-xl border border-slate-200 bg-white p-8 shadow-sm">
+              <p className="text-sm text-slate-600">No articles found yet. Add markdown files to <code>content/articles</code> to populate this list.</p>
+            </div>
+          )}
         </section>
       </main>
 

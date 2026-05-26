@@ -34,3 +34,25 @@ title: Cassandra Data model
         Defines the order of rows within a partition.
         Organizes how rows are sorted and stored inside the partition.
         Helps efficiently query and retrieve rows within the same partition.
+
+## Collection Types in Cassandra
+
+- Cassandra supports four main collection types: set (unique values of the same datatype), list (ordered, non-unique values of the same datatype), map (key-value pairs with unique keys), and tuple (fixed-length set of values of different types).
+- Collections are useful for scenarios like tagging blog articles, where multiple tags can be stored as a single collection datatype.
+
+# Advanced Collection Features
+
+- User-defined types (UDTs) allow extending Cassandra’s data model by creating custom types.
+- Collections can be nested by marking them as frozen, which serializes the collection as binary data; this is required for UDTs but not for tuples in newer Cassandra versions.
+
+## Additional Cassandra Data Model Details
+
+- Cassandra columns are actually triples including a hidden timestamp used for conflict resolution and replication management.
+- Cassandra supports TTL (time to live) at the column level, allowing data to expire automatically after a specified duration.
+
+- The frozen keyword in Cassandra is used to mark a collection or user-defined type (UDT) so that it is treated as a single, immutable value. When a collection is frozen:
+
+    1. Cassandra serializes and stores the entire collection as a blob (binary large object).
+    2. This allows nesting collections within other collections or UDTs.
+    3. It ensures the collection is stored and retrieved as a whole, rather than allowing partial updates to individual elements.
+
