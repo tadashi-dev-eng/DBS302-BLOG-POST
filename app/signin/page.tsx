@@ -16,6 +16,12 @@ export default function SigninPage() {
     setError(null);
     setIsLoading(true);
 
+    if (!supabase) {
+      setError("Supabase is not configured. Check your environment settings.");
+      setIsLoading(false);
+      return;
+    }
+
     const { error: signInError } = await supabase.auth.signInWithPassword({
       email: form.email,
       password: form.password,

@@ -11,6 +11,15 @@ export default function Home() {
 
   useEffect(() => {
     const checkSession = async () => {
+      if (!supabase) {
+        setIsLoading(false);
+        return;
+      }
+
+      const timeoutId = window.setTimeout(() => {
+        setIsLoading(false);
+      }, 5000);
+
       try {
         const {
           data: { session },
@@ -19,13 +28,14 @@ export default function Home() {
       } catch {
         // session unavailable; render as signed out
       } finally {
+        clearTimeout(timeoutId);
         setIsLoading(false);
       }
     };
 
     checkSession();
 
-    const authListener = supabase.auth.onAuthStateChange((_event, session) => {
+    const authListener = supabase?.auth.onAuthStateChange((_event, session) => {
       setSession(session);
     });
 

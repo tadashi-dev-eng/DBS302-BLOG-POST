@@ -19,8 +19,8 @@ export default function SignupPage() {
     setIsLoading(true);
 
     try {
-      if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
-        throw new Error("Supabase environment variables are not set. Check .env.local.");
+      if (!supabase) {
+        throw new Error("Supabase is not configured. Check your environment settings.");
       }
 
       const { data, error: signUpError } = await supabase.auth.signUp({

@@ -11,6 +11,15 @@ export default function SiteHeader() {
 
   useEffect(() => {
     const initSession = async () => {
+      if (!supabase) {
+        setIsLoading(false);
+        return;
+      }
+
+      const timeoutId = window.setTimeout(() => {
+        setIsLoading(false);
+      }, 5000);
+
       try {
         const {
           data: { session },
@@ -19,18 +28,19 @@ export default function SiteHeader() {
       } catch {
         // session unavailable; render as signed out
       } finally {
+        clearTimeout(timeoutId);
         setIsLoading(false);
       }
     };
 
     initSession();
 
-    const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
+    const authListener = supabase?.auth.onAuthStateChange((_event, session) => {
       setSession(session);
     });
 
     return () => {
-      authListener?.subscription.unsubscribe();
+      authListener?.data?.subscription?.unsubscribe();
     };
   }, []);
 
@@ -50,7 +60,9 @@ export default function SiteHeader() {
             <button
               type="button"
               onClick={async () => {
-                await supabase.auth.signOut();
+                if (supabase) {
+                  await supabase.auth.signOut();
+                }
                 setSession(null);
               }}
               className="rounded-md bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-500"
