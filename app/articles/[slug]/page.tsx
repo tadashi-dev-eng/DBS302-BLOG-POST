@@ -13,9 +13,9 @@ export const dynamicParams = true;
 export const dynamic = "force-dynamic";
 
 type ArticlePageProps = {
-  params: {
+  params: Promise<{
     slug: string | string[] | undefined;
-  };
+  }>;
 };
 
 export async function generateStaticParams() {
@@ -24,7 +24,7 @@ export async function generateStaticParams() {
 }
 
 export default async function ArticlePage({ params }: ArticlePageProps) {
-  const { slug } = params;
+  const { slug } = await params;
   const fileName = await getArticleFileName(slug);
 
   if (!fileName) {
