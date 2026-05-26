@@ -9,6 +9,9 @@ import { getArticles, getArticleFileName } from "../../../lib/articles";
 
 const contentDir = path.join(process.cwd(), "content", "articles");
 
+export const dynamicParams = true;
+export const dynamic = "force-dynamic";
+
 type ArticlePageProps = {
   params: {
     slug: string | string[] | undefined;

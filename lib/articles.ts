@@ -37,10 +37,9 @@ export async function getArticles(): Promise<ArticleMeta[]> {
 
 export async function getArticleFileName(slug: string | string[] | undefined): Promise<string | null> {
   const files = await fs.readdir(contentDir);
-  const normalized = Array.isArray(slug)
-    ? slug[0]?.toLowerCase() ?? ""
-    : typeof slug === "string"
-    ? slug.toLowerCase()
+  const rawSlug = Array.isArray(slug) ? slug[0] : slug;
+  const normalized = typeof rawSlug === "string" && rawSlug.length > 0
+    ? decodeURIComponent(rawSlug).toLowerCase()
     : "";
 
   for (const file of files) {
