@@ -54,7 +54,6 @@ title: "Cassandra Basics"
 - Column families group multiple key-value pairs into rows with timestamps, and Cassandra combines these concepts into partitions, nodes, and clusters.
 
 ## Cassandra Features and Architecture
-
 - Cassandra is distributed and decentralized with a peer-to-peer architecture where all nodes are equal, avoiding single points of failure.
 - It supports elastic scalability, allowing clusters to scale up or down without disruption, and offers high availability and fault tolerance by replicating data across nodes and data centers.
 - Cassandra provides tunable eventual consistency, ensuring that all replicas become consistent over time.
