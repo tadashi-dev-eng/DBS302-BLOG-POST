@@ -11,11 +11,16 @@ export default function Home() {
 
   useEffect(() => {
     const checkSession = async () => {
-      const {
-        data: { session },
-      } = await supabase.auth.getSession();
-      setSession(session);
-      setIsLoading(false);
+      try {
+        const {
+          data: { session },
+        } = await supabase.auth.getSession();
+        setSession(session);
+      } catch {
+        // session unavailable; render as signed out
+      } finally {
+        setIsLoading(false);
+      }
     };
 
     checkSession();
